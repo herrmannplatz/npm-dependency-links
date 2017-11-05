@@ -1,0 +1,29 @@
+{
+    "name": "npm-dependency-links",
+    "displayName": "NPM Dependency Links",
+    "description": "Go to npm site of your dependencies",
+    "version": "0.0.1",
+    "publisher": "herrmannplatz",
+    "engines": {
+        "vscode": "^1.17.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./extension",
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.5.2",
+        "vscode": "^1.1.5",
+        "mocha": "^3.5.0",
+        "eslint": "^4.6.1",
+        "@types/node": "^7.0.0",
+        "@types/mocha": "^2.2.42"
+    }
+}
