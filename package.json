@@ -5,6 +5,10 @@
     "version": "0.0.2",
     "publisher": "herrmannplatz",
     "icon": "npm_icon.png",
+    "repository": {
+		"type": "git",
+		"url": "https://github.com/herrmannplatz/npm-dependency-links.git"
+	},
     "engines": {
         "vscode": "^1.17.0"
     },
