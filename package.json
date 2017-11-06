@@ -2,13 +2,13 @@
     "name": "npm-dependency-links",
     "displayName": "NPM Dependency Links",
     "description": "Go to npm site of your dependencies",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "herrmannplatz",
     "icon": "npm_icon.png",
     "repository": {
-		"type": "git",
-		"url": "https://github.com/herrmannplatz/npm-dependency-links.git"
-	},
+        "type": "git",
+        "url": "https://github.com/herrmannplatz/npm-dependency-links.git"
+    },
     "engines": {
         "vscode": "^1.17.0"
     },
