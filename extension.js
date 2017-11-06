@@ -12,7 +12,12 @@ exports.activate = function (context) {
             }
 
             const pkg = JSON.parse(document.getText());
-            const { dependencies = {}, devDependencies = {}, optionalDependencies = {}} = pkg;
+            const { 
+                dependencies = {}, 
+                devDependencies = {}, 
+                optionalDependencies = {},
+                peerDependencies = {},
+            } = pkg;
 
             const links = [];
             let lineIndex = 0;
@@ -33,7 +38,8 @@ exports.activate = function (context) {
                 [
                     ...Object.entries(dependencies),
                     ...Object.entries(devDependencies),
-                    ...Object.entries(optionalDependencies)
+                    ...Object.entries(optionalDependencies),
+                    ...Object.entries(peerDependencies)
                 ].forEach(([package, version]) => {
                     extractLink(line, package, version);
                 });

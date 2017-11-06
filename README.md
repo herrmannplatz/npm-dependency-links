@@ -8,6 +8,8 @@ Links the depedencies in your package.json to their npmjs.com profile.
 
 Visit the npmjs.com profile of your dependencies by simply `CMD/Ctrl+click` on the package name in your package.json.
 
+![link example](images/promo.gif)
+
 ## Requirements
 
 Visual Studio Code > 1.17.0
