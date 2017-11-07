@@ -2,15 +2,8 @@ const { languages, Uri, DocumentLink, Range } = require('vscode');
 const path = require('path');
 
 exports.activate = function (context) {
-    const disposable = languages.registerDocumentLinkProvider(['javascript', { language: 'json', pattern: '**/package.json' }], {
+    const disposable = languages.registerDocumentLinkProvider(['javascript', { pattern: '**/package.json' }], {
         provideDocumentLinks(document, token) {
-            const { fileName } = document;
-
-            // Check why pattern is not working
-            if (path.basename(fileName) !== 'package.json') {
-                return;
-            }
-
             const pkg = JSON.parse(document.getText());
             const { 
                 dependencies = {}, 
