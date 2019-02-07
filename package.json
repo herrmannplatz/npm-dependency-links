@@ -1,6 +1,6 @@
 {
     "name": "npm-dependency-links",
-    "displayName": "NPM Dependency Links",
+    "displayName": "npm Dependency Links",
     "description": "Go to npm site of your dependencies",
     "version": "1.0.0",
     "publisher": "herrmannplatz",
