@@ -1,11 +1,12 @@
-const { languages, Uri, DocumentLink, Range } = require('vscode');
+const { languages, Uri, DocumentLink, Range, workspace } = require('vscode');
 const path = require('path');
 
 function buildLink(line, lineIndex, package) {
     const startCharacter = line.text.indexOf(package);
     const endCaracter = startCharacter + package.length;
     const linkRange = new Range(lineIndex, startCharacter, lineIndex, endCaracter);
-    const linkUri = Uri.parse(`https://www.npmjs.com/package/${package}`);
+    const registeryUrl = workspace.getConfiguration('npmDependencyLinks').registryUrl;
+    const linkUri = Uri.parse(`${registeryUrl}${package}`);
     return new DocumentLink(linkRange, linkUri);
 }
 
