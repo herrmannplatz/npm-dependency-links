@@ -10,6 +10,15 @@ Visit the npmjs.com profile of your dependencies by simply `CMD/Ctrl+click` on t
 
 ![link example](images/promo.gif)
 
+# Custom Registry URL
+You can also pass custom registry url. For example, if you are using verdaccio. Default value is `https://www.npmjs.com/package/`.
+
+To change the url, you need to set this configuration value in `settings.json`
+
+`"npmDependencyLinks.registryUrl": "http://myCustomRegistry/"`
+
+_Note: Don't forget to put `"/"` in the end._
+
 ## Requirements
 
 Visual Studio Code > 1.17.0
