@@ -23,6 +23,19 @@
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "node ./node_modules/vscode/bin/test"
     },
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "NPM Dependency Links Configuration",
+            "properties": {
+                "npmDependencyLinks.registryUrl": {
+                    "type": "string",
+                    "default": "https://www.npmjs.com/package/",
+                    "description": "Registry URL to be used for package link."
+                }
+            }
+        }
+    },
     "devDependencies": {
         "typescript": "^2.5.2",
         "vscode": "^1.1.5",
