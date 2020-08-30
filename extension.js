@@ -1,12 +1,30 @@
 const { languages, Uri, DocumentLink, Range, workspace } = require('vscode');
-const path = require('path');
 
-function buildLink(line, lineIndex, package) {
-    const startCharacter = line.text.indexOf(package);
-    const endCaracter = startCharacter + package.length;
-    const linkRange = new Range(lineIndex, startCharacter, lineIndex, endCaracter);
-    const registeryUrl = workspace.getConfiguration('npmDependencyLinks').registryUrl;
-    const linkUri = Uri.parse(`${registeryUrl}${package}`);
+function buildLinkFromPattern(line, lineIndex, packageName) {
+    const startCharacter = line.text.indexOf(packageName);
+    const endCharacter = startCharacter + packageName.length;
+    const linkRange = new Range(lineIndex, startCharacter, lineIndex, endCharacter);
+    const registryUrlPattern = workspace.getConfiguration('npmDependencyLinks').registryUrlPattern;
+    const registryUrl = registryUrlPattern.replace('{{pkg}}', packageName)
+    const linkUri = Uri.parse(registryUrl);
+    
+    return new DocumentLink(linkRange, linkUri);
+}
+
+function shouldUseUrlPattern() {
+    return !!workspace.getConfiguration('npmDependencyLinks').registryUrlPattern
+}
+
+function buildLink(line, lineIndex, packageName) {
+    if (shouldUseUrlPattern()) {
+        return buildLinkFromPattern(line, lineIndex, packageName)
+    }
+
+    const startCharacter = line.text.indexOf(packageName);
+    const endCharacter = startCharacter + packageName.length;
+    const linkRange = new Range(lineIndex, startCharacter, lineIndex, endCharacter);
+    const registryUrl = workspace.getConfiguration('npmDependencyLinks').registryUrl;
+    const linkUri = Uri.parse(`${registryUrl}${packageName}`);
     return new DocumentLink(linkRange, linkUri);
 }
 
@@ -25,7 +43,7 @@ exports.activate = function (context) {
                     if (line.text.includes('}')) {
                         shouldCheckForDependency = false;
                     } else {
-                        // find dependecy
+                        // find dependency
                         const matches = line.text.match(/"(.*?)"/);
                         
                         if (matches) {
