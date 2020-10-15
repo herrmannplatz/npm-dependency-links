@@ -32,6 +32,11 @@
                     "type": "string",
                     "default": "https://www.npmjs.com/package/",
                     "description": "Registry URL to be used for package link."
+                },
+                "npmDependencyLinks.registryUrlPattern": {
+                    "type": "string",
+                    "default": "",
+                    "markdownDescription": "Registry URL pattern to be used for package link.\n Example: `http://myCustomRegistry/{{pkg}}/package?queryparams`. \nTakes priority over `#npmDependencyLinks.registryUrl#` if set."
                 }
             }
         }
