@@ -15,8 +15,6 @@ To change the URL, you can set the configuration value in `settings.json` as bel
 
 `"npmDependencyLinks.registryUrlPattern": "http://myCustomRegistry/{{pkg}}/package?queryparams"`
 
-Default value is `https://www.npmjs.com/package/{{pkg}}`
-
 Note that `{{pkg}}` is the only part of the pattern that will be set by this extension. E.g., If your pattern is `http://registry.mysite.com/package?name={{pkg}}?version=latest`. If you click on `npm-dependency-links`, then the resulting URL will be `http://registry.mysite.com/package?name=npm-dependency-links?version=latest`
 
 ## Custom Registry URL (Legacy)
