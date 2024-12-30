@@ -15,3 +15,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 1.0.0
 - Improve parsing
 - Fix links getting marked multiple times
+
+## 1.1.0
+- Configuration for registry url
+
+## 1.2.0
+- Add support for arbitrary registry URLs

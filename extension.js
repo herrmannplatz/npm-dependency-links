@@ -29,8 +29,8 @@ function buildLink(line, lineIndex, packageName) {
 }
 
 exports.activate = function (context) {
-    const disposable = languages.registerDocumentLinkProvider(['javascript', { pattern: '**/package.json' }], {
-        provideDocumentLinks(document, token) {
+    const disposable = languages.registerDocumentLinkProvider({ language: 'json', pattern: '**/package.json' }, {
+        provideDocumentLinks(document) {
             let links = [];
             let lineIndex = 0;
             let shouldCheckForDependency = false;
