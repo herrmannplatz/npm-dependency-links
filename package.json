@@ -2,7 +2,7 @@
     "name": "npm-dependency-links",
     "displayName": "npm Dependency Links",
     "description": "Go to npm site of your dependencies",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "publisher": "herrmannplatz",
     "icon": "npm_icon.png",
     "repository": {
