@@ -1,37 +1,37 @@
-const { languages, Uri, DocumentLink, Range, workspace } = require('vscode');
+import * as vscode from 'vscode';
 
-function buildLinkFromPattern(line, lineIndex, packageName) {
+function buildLinkFromPattern(line: vscode.TextLine, lineIndex: number, packageName: string) {
     const startCharacter = line.text.indexOf(packageName);
     const endCharacter = startCharacter + packageName.length;
-    const linkRange = new Range(lineIndex, startCharacter, lineIndex, endCharacter);
-    const registryUrlPattern = workspace.getConfiguration('npmDependencyLinks').registryUrlPattern;
-    const registryUrl = registryUrlPattern.replace('{{pkg}}', packageName)
-    const linkUri = Uri.parse(registryUrl);
+    const linkRange = new vscode.Range(lineIndex, startCharacter, lineIndex, endCharacter);
+    const registryUrlPattern = vscode.workspace.getConfiguration('npmDependencyLinks').registryUrlPattern;
+    const registryUrl = registryUrlPattern.replace('{{pkg}}', packageName);
+    const linkUri = vscode.Uri.parse(registryUrl);
     
-    return new DocumentLink(linkRange, linkUri);
+    return new vscode.DocumentLink(linkRange, linkUri);
 }
 
 function shouldUseUrlPattern() {
-    return !!workspace.getConfiguration('npmDependencyLinks').registryUrlPattern
+    return !!vscode.workspace.getConfiguration('npmDependencyLinks').registryUrlPattern;
 }
 
-function buildLink(line, lineIndex, packageName) {
+function buildLink(line: vscode.TextLine, lineIndex: number, packageName: string) {
     if (shouldUseUrlPattern()) {
-        return buildLinkFromPattern(line, lineIndex, packageName)
+        return buildLinkFromPattern(line, lineIndex, packageName);
     }
 
     const startCharacter = line.text.indexOf(packageName);
     const endCharacter = startCharacter + packageName.length;
-    const linkRange = new Range(lineIndex, startCharacter, lineIndex, endCharacter);
-    const registryUrl = workspace.getConfiguration('npmDependencyLinks').registryUrl;
-    const linkUri = Uri.parse(`${registryUrl}${packageName}`);
-    return new DocumentLink(linkRange, linkUri);
+    const linkRange = new vscode.Range(lineIndex, startCharacter, lineIndex, endCharacter);
+    const registryUrl = vscode.workspace.getConfiguration('npmDependencyLinks').registryUrl;
+    const linkUri = vscode.Uri.parse(`${registryUrl}${packageName}`);
+    return new vscode.DocumentLink(linkRange, linkUri);
 }
 
-exports.activate = function (context) {
-    const disposable = languages.registerDocumentLinkProvider({ language: 'json', pattern: '**/package.json' }, {
+exports.activate = function (context: vscode.ExtensionContext) {
+    const disposable = vscode.languages.registerDocumentLinkProvider({ language: 'json', pattern: '**/package.json' }, {
         provideDocumentLinks(document) {
-            let links = [];
+            const links = [];
             let lineIndex = 0;
             let shouldCheckForDependency = false;
             
@@ -63,5 +63,5 @@ exports.activate = function (context) {
         }
     });
 
-    context.subscriptions.push(disposable)
+    context.subscriptions.push(disposable);
 };

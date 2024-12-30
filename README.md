@@ -28,4 +28,4 @@ _Note: Don't forget to put `"/"` in the end._
 
 ## Requirements
 
-Visual Studio Code > 1.17.0
+Visual Studio Code > 1.74.0
