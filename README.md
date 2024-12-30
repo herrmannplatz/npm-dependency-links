@@ -1,6 +1,6 @@
 # npm-dependency-links
 
-[![](https://vsmarketplacebadge.apphb.com/version/herrmannplatz.npm-dependency-links.svg)](https://marketplace.visualstudio.com/items?itemName=herrmannplatz.npm-dependency-links) [![](https://vsmarketplacebadge.apphb.com/installs/herrmannplatz.npm-dependency-links.svg)](https://marketplace.visualstudio.com/items?itemName=herrmannplatz.npm-dependency-links) [![](https://vsmarketplacebadge.apphb.com/rating/herrmannplatz.npm-dependency-links.svg)](https://marketplace.visualstudio.com/items?itemName=herrmannplatz.npm-dependency-links)
+![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/herrmannplatz.npm-dependency-links) ![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/herrmannplatz.npm-dependency-links) ![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/herrmannplatz.npm-dependency-links.svg)
 
 Links the depedencies in your package.json to their npmjs.com profile.
 
