@@ -29,7 +29,7 @@ function buildLink(line: vscode.TextLine, lineIndex: number, packageName: string
 }
 
 exports.activate = function (context: vscode.ExtensionContext) {
-    const disposable = vscode.languages.registerDocumentLinkProvider({ language: 'json', pattern: '**/package.json' }, {
+    const packageJsonProvider = vscode.languages.registerDocumentLinkProvider({ language: 'json', pattern: '**/package.json' }, {
         provideDocumentLinks(document) {
             const links = [];
             let lineIndex = 0;
@@ -63,5 +63,35 @@ exports.activate = function (context: vscode.ExtensionContext) {
         }
     });
 
-    context.subscriptions.push(disposable);
+    const pnpmWorkspaceProvider = vscode.languages.registerDocumentLinkProvider({ language: 'yaml', pattern: '**/pnpm-workspace.yaml' }, {
+        provideDocumentLinks(document) {
+            const links = [];
+            let lineIndex = 0;
+            let shouldCheckForCatalogDependencies = false;
+
+            while (lineIndex < document.lineCount) {
+                const line = document.lineAt(lineIndex);
+
+                if (/^catalog(s)?:/.test(line.text)){
+                    shouldCheckForCatalogDependencies = true;
+                } else if (shouldCheckForCatalogDependencies) {
+                    if (/^\w+:/.test(line.text)) {
+                        shouldCheckForCatalogDependencies = false;
+                    } else {
+                        const matches = line.text.match(/^\s+"([^"]+)"\s*:\s+.*/) || line.text.match(/^\s+([a-z0-9][\w./-]*):\s+.*/i);
+
+                        if (matches) {
+                            links.push(buildLink(line, lineIndex, matches[1]));
+                        }
+                    }
+                }
+
+                lineIndex += 1;
+            }
+
+            return links;
+        }
+    });
+
+    context.subscriptions.push(packageJsonProvider, pnpmWorkspaceProvider);
 };

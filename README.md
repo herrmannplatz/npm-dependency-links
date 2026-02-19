@@ -6,7 +6,7 @@ Links the depedencies in your package.json to their npmjs.com profile.
 
 ## Features
 
-Visit the npmjs.com profile of your dependencies by simply `CMD/Ctrl+click` on the package name in your package.json.
+Visit the npmjs.com profile of your dependencies by simply `CMD/Ctrl+click` on the package name in your package.json and pnpm-workspace.yaml.
 
 ![link example](images/promo.gif)
 
